@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\area;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Schema\ForeignIdColumnDefinition;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -15,16 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->unsignedBigInteger('area_id')->nullable();
-            $table->unsignedBigInteger('training_center_id')->nullable();
-            //referenciando la tabla areas
-            $table->foreign('area_id')
-            ->references('id')
-            ->on('areas')->onDelete('set null');
-            //referenciando la tabla training_centers  
-            $table->foreign('training_center_id')
-            ->references('id')
-            ->on('training_centers')->onDelete('set null');
+            $table->ForeignId('area_id')->constrained('areas');
+            $table->foreignId('training_center_id')->constrained('training_centers');
             $table->timestamps();
         });
     }

@@ -13,19 +13,11 @@ return new class extends Migration
     {
         Schema::create('apprendices', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+             $table->string('name');
             $table->string('email')->unique();
             $table->string('cell_number');
-            $table->unsignedBigInteger('course_id')->nullable();
-            $table->unsignedBigInteger('computer_id')->nullable();
-            //referenciando la tabla courses
-            $table->foreign('course_id')
-            ->references('id')
-            ->on('courses')->onDelete('set null');
-            //referenciando la tabla computers   
-            $table->foreign('cumputer_id')
-            ->references('id')
-            ->on('cumputers')->onDelete('set null');
+            $table->foreignId('course_id')->constrained('courses');
+            $table->foreignId('computer_id')->constrained('computers');
             $table->timestamps();
         });
     }

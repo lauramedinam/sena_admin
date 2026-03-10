@@ -13,16 +13,8 @@ return new class extends Migration
     {
         Schema::create('course_teachers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('course_id')->nullable();
-            $table->unsignedBigInteger('teacher_id')->nullable();
-            //referenciando la tabla courses
-            $table->foreign('course_id')
-            ->references('id')
-            ->on('courses')->onDelete('set null');
-            //referenciando la tabla teachers
-            $table->foreign('teacher_id')
-            ->references('id')
-            ->on('teachers')->onDelete('set null');
+             $table->foreignId('course_id')->constrained('courses');
+            $table->foreignId('teacher_id')->constrained('teachers');
             $table->timestamps();
         });
     }
