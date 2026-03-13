@@ -11,4 +11,8 @@ class area extends Model
     public function courses(){
         return $this->hasMany('App\Models\course');
     }
+     //Relacion Uno a Muchos
+    public function teachers(){
+        return $this->hasMany('App\Models\teacher');
+    }
 }

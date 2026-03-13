@@ -19,5 +19,9 @@ class course extends Model
     public function training_center(){
         return $this->belongsTo('App\Models\training_center');
     }
+    // Relacion Uno a Muchos 
+    public function course_teachers(){
+        return $this->hasMany('App\Models\course_teacher');
+    }
 
 }

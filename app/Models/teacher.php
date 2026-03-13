@@ -6,5 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class teacher extends Model
 {
-    //
+    
+//Relacion Uno a Muchos (Inversa) con area
+    public function training_center(){
+        return $this->belongsTo('App\Models\training_center');
+    }
+    // Relacion Uno a Muchos 
+    public function course_teachers(){
+        return $this->hasMany('App\Models\course_teacher');
+    }
+    //Relacion Uno a Muchos (Inversa) con area
+    public function area(){
+        return $this->belongsTo('App\Models\area');
+    }
 }
